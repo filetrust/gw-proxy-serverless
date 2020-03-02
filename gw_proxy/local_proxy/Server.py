@@ -33,6 +33,7 @@ class Server():
 
     def stop(self):
         self.httpd.shutdown()
+        self.httpd.server_close()
 
     def url(self, path=''):
         return f'{self.scheme}://{self.host}:{self.port}/{path}'
