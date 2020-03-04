@@ -18,19 +18,15 @@ function App() {
     <div className="App">
       <Container>
         <Row className="my-5">
-          <div className="title">Key Accounts</div>
-          <div className="ml-auto" style={{ height: 150 }}>
-            <ReactSpeedometer value={400} />
+          <div className="title">Financials</div>
+          <div className="ml-auto" style={{ height: 200 }}>
+            <ReactSpeedometer value={400} height={120} width={240}/>
           </div>
         </Row>
 
         <Row className="mt-4">
           <Col md={6}>
             <Card fluid>
-              <Card.Content header="Top 10 Clients" />
-              <Card.Content>
-                <BarChart />
-              </Card.Content>
             </Card>
             <KeySuccess />
           </Col>
