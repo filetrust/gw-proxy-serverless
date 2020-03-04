@@ -1,24 +1,24 @@
-import React from 'react';
-import './App.scss';
+import React            from 'react';
 import ReactSpeedometer from 'react-d3-speedometer';
+import './App.scss';
 
-import KeySuccess  from './components/keySuccess';
-import MetricTable from './components/metricTable';
+import KeySuccess       from './components/keySuccess';
+import MetricTable      from './components/metricTable';
+import DecisionRequired from "./components/decisionRequired";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'semantic-ui-css/semantic.min.css';
 
-import { Row, Col, Container } from 'reactstrap';
-import { Card } from 'semantic-ui-react';
+import {Row, Col, Container} from 'reactstrap';
+import {Card}                from 'semantic-ui-react';
 
 function App() {
   return (
     <div className="App">
       <Container>
-        <Row className="my-5">
+        <Row className="my-5 d-flex justify-content-lg-between">
           <div className="title">Financials</div>
-          <div className="ml-auto" style={{ height: 120 }}>
-            <ReactSpeedometer value={200} height={120} width={240}/>
-          </div>
+          <DecisionRequired notes={['staying', 'very very hard decision']}/>
+          <ReactSpeedometer value={300} height={120} width={240}/>
         </Row>
 
         <Row className="mt-4">
@@ -30,8 +30,8 @@ function App() {
           </Col>
           <Col md={6}>
             <div className="subtitle">Key Metrics</div>
-            <MetricTable />
-            <KeySuccess />
+            <MetricTable/>
+            <KeySuccess/>
           </Col>
         </Row>
         <Row md={12}>

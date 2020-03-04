@@ -8,20 +8,19 @@ const data = [
   {metric: 'Average WIP', thisMonth: '', lastMonth: '', trend: 'up'},
   {metric: 'Average Dest.', thisMonth: '', lastMonth: '', trend: 'up'},
 ];
-const ProjectTable = () => (
+const MetricTable = () => (
   <React.Fragment>
     <Table celled>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>
-          </Table.HeaderCell>
-          <Table.HeaderCell>
+          <Table.HeaderCell/>
+          <Table.HeaderCell textAlign="center">
             This <br/> Month
           </Table.HeaderCell>
-          <Table.HeaderCell>
+          <Table.HeaderCell textAlign="center">
             Last <br/> Month
           </Table.HeaderCell>
-          <Table.HeaderCell>
+          <Table.HeaderCell textAlign="center">
             Trend
           </Table.HeaderCell>
         </Table.Row>
@@ -46,8 +45,8 @@ const ProjectTable = () => (
           return (
             <Table.Row key={metric}>
               <Table.Cell>{metric}</Table.Cell>
-              <Table.Cell>{thisMonth}</Table.Cell>
-              <Table.Cell>{lastMonth}</Table.Cell>
+              <Table.Cell textAlign="right">{thisMonth}</Table.Cell>
+              <Table.Cell textAlign="right">{lastMonth}</Table.Cell>
               <Table.Cell textAlign="center">
                 <Icon name={iconName} color={iconColor} size="large"/>
               </Table.Cell>
@@ -59,4 +58,4 @@ const ProjectTable = () => (
   </React.Fragment>
 );
 
-export default ProjectTable;
+export default MetricTable;
