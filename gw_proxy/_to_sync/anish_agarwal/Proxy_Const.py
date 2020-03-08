@@ -44,3 +44,29 @@ CONST_HEADER_BROTLI_ENCODING   = 'br'
 
 RESPONSE_BAD_REQUEST           = 'Request body was invalid'
 RESPONSE_SERVER_ERROR          = 'A server error was encountered while processing the request'
+
+# Lambda and API Gateway Creation Constants
+AWS_ACCOUNT_ID                 =  ''
+AWS_ACCESS_ID                  =  ''
+AWS_SECRET_KEY                 =  ''
+AWS_REGION                     =  ''
+AWS_LAMBDA_ROLE_ARN            =  ''
+
+# To push lambda code temporarily before deployment
+AWS_S3_BUCKET                  =  ''
+AWS_CREATE_LAYER_LAMBDA_NAME   =  'Layers_Creator'
+AWS_DELETE_LAYER_LAMBDA_NAME   =  'Layers_Remover'
+AWS_LAYER_ADD_CODE_DIR_PATH    =  '../to_sync/anish_agarwal/lambda/creator/'
+AWS_LAYER_DEL_CODE_DIR_PATH    =  '../to_sync/anish_agarwal/lambda/remover/'
+
+# Lambda RUntime Configuration Constants
+LAMBDA_RUNTIME                  =  'python3.8'
+LAMBDA_MEMORY                   = 512
+# Max timeout
+LAMBDA_TIMEOUT                  = 900
+LAMBDA_TRACE_MODE               = 'PassThrough'
+
+# API Gw constants
+API_GW_NAME                     = 'LayersApis'
+API_GW_PATH_CREATE_LAYER        = '/create'
+API_GW_PATH_DELETE_LAYER        = '/delete'
