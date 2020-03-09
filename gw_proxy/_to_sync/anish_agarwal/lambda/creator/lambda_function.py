@@ -14,8 +14,8 @@ def lambda_handler(event, context):
     if 'description' in postdata:
         description             = postdata['description']
     s3_bucket = Globals.lambda_layers_s3_bucket
-    if s3_bucket in postdata:
-        s3_bucket               = postdata['s3ucket']
+    if 's3_bucket' in postdata:
+        s3_bucket               = postdata['s3_bucket']
     lambda_layer                = Lambda_Layer(name, folders_mapping, s3_bucket, description)
     lambda_layer.create()
     return ok()

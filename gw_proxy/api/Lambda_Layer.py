@@ -10,16 +10,20 @@ from Globals import Globals
 
 
 class Lambda_Layer:
-    def __init__(self, name=None, folders_mapping=None, s3_bucket=None, description=''):
+    def __init__(self, name=None, folders_mapping=None,
+                 s3_bucket=None, description=None,
+                 version_number=None, version_arn=None):
         self.name           = name.replace('.', '-')
         self.folders_mapping = folders_mapping
         self.runtimes       = ['python3.8', 'python3.7', 'python3.6']
         self.license_info   =  'https://github.com/filetrust/gw-proxy-serverless/blob/master/LICENSE'
+        if not description:
+            description = ''
         self.description    = description
         self.s3_bucket      = s3_bucket if s3_bucket else Globals.lambda_layers_s3_bucket
         self.s3_key         = f'{name}.zip'
-        self.version_arn    = None
-        self.version_number = None
+        self.version_arn    = version_arn
+        self.version_number = version_number
 
     # cached dependencies
 
@@ -64,7 +68,8 @@ class Lambda_Layer:
         aws_response = self.client().publish_layer_version(**params)
         self.version_arn = aws_response.get("LayerVersionArn")
         self.version_number = aws_response.get("Version")
-        self.delete_zipped_layer_file()
+        if self.folders_mapping is not None:
+            self.delete_zipped_layer_file()
         return self.version_arn
 
     def get_layer(self):
@@ -75,6 +80,8 @@ class Lambda_Layer:
 
     def delete(self, with_s3_bucket=False):
         if self.exists() is False:
+            return False
+        if not self.version_arn or not self.version_number:
             return False
         self.client().delete_layer_version(LayerName=self.name, VersionNumber=self.version_number)
         if self.s3().file_exists(self.s3_bucket, self.s3_key):

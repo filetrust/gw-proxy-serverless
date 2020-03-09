@@ -8,6 +8,10 @@ def lambda_handler(event, context):
     postdata                    = json.loads(event['body'])
     if("name" not in postdata):
         return bad_request("name")
+    if ("version_arn" not in postdata):
+        return bad_request("name")
+    if ("version_number" not in postdata):
+        return bad_request("name")
     name                        = postdata['name'].replace('.', '-')
     folders_mapping             = None
     description = None
@@ -24,7 +28,7 @@ def lambda_handler(event, context):
 def ok():
     return {
         'statusCode': 200,
-        'body': json.dumps('Layer Created!')
+        'body': json.dumps('Layer Removed!')
     }
 
 
