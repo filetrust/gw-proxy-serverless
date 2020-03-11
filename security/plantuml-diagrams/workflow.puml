@@ -1,0 +1,25 @@
+@startuml
+skinparam activityFontSize 20
+skinparam activityDiamondFontSize 30
+skinparam activityArrowFontSize 24
+
+title __Workflow__
+
+[*] -> Client
+
+S3_Bucket --> Lambda: s3 link
+
+state Cloud {
+  Folder1 --> Lambda: files
+  Folder2 --> Lambda: files
+}
+
+state AWS_API_Gateway {
+  Client --> Validator : Request
+  Validator --> SignedLink_Creator
+  SignedLink_Creator --> Folder1: signed link
+  SignedLink_Creator --> Folder2: signed link
+  Lambda--> S3_Bucket: result files
+  Lambda--> Client: s3 link
+}
+@enduml
