@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='WallsStreetSelenium',
+    name='GlasswallSelenium',
     version='0.1',
     packages=['venv.Lib.site-packages.urllib3', 'venv.Lib.site-packages.urllib3.util',
               'venv.Lib.site-packages.urllib3.contrib', 'venv.Lib.site-packages.urllib3.contrib._securetransport',
